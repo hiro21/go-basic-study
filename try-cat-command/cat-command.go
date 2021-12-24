@@ -29,4 +29,12 @@ func main() {
 	nFlag := flag.Bool("n", false, "trueの場合にnumberを出力するフラグ")
 	flag.Parse()
 	fmt.Println(*nFlag)
+
+	// フラグを覗いた引数を取得するレシピ
+	excludeFlag := flag.Args()
+	fmt.Println("flag.args", excludeFlag)
+	fmt.Println("flag.args.len", len(excludeFlag))
+	for i := 0; i < len(excludeFlag); i++ {
+		fmt.Println("excludeArgs", excludeFlag[i])
+	}
 }
