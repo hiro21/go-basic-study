@@ -19,7 +19,8 @@ func main() {
 
 	// フラグを覗いた引数を取得するレシピ
 	excludeFlag := flag.Args()
-	for i := 0; i < len(excludeFlag); i++ {
+	argsLength := len(excludeFlag)
+	for i := 0; i < argsLength; i++ {
 		fmt.Println("excludeArgs", excludeFlag[i])
 	}
 }
