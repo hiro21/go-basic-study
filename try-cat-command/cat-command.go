@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
 /**
@@ -22,5 +23,19 @@ func main() {
 	argsLength := len(excludeFlag)
 	for i := 0; i < argsLength; i++ {
 		fmt.Println("excludeArgs", excludeFlag[i])
+
+		// file open(read only)
+		readOnlyFile, err := os.Open(excludeFlag[i])
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		fmt.Println(readOnlyFile)
+
+		defer readOnlyFile.Close()
+
+		// file read
+
+		// file close
 	}
 }
