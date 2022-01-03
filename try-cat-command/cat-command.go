@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
@@ -30,12 +31,19 @@ func main() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-		fmt.Println(readOnlyFile)
 
 		defer readOnlyFile.Close()
 
 		// file read
+		scannar := bufio.NewScanner(readOnlyFile)
+		for scannar.Scan() {
+			fmt.Println(scannar.Text())
+		}
 
-		// file close
+		// error process
+		if err := scannar.Err(); err != nil {
+			fmt.Println("読み込みエラ-")
+			os.Exit(1)
+		}
 	}
 }
