@@ -36,8 +36,14 @@ func main() {
 
 		// file read
 		scannar := bufio.NewScanner(readOnlyFile)
+		index := 1
 		for scannar.Scan() {
-			fmt.Println(scannar.Text())
+			if *nFlag {
+				fmt.Println(index, scannar.Text())
+			} else {
+				fmt.Println(scannar.Text())
+			}
+			index++
 		}
 
 		// error process
