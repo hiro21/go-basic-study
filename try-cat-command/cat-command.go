@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 /**
@@ -17,15 +18,12 @@ func main() {
 	// -n取得のレシピ（後で最適化する）
 	nFlag := flag.Bool("n", false, "trueの場合にnumberを出力するフラグ")
 	flag.Parse()
-	fmt.Println(*nFlag)
 
 	// フラグを覗いた引数を取得するレシピ
 	excludeFlag := flag.Args()
 	argsLength := len(excludeFlag)
+	index := 1
 	for i := 0; i < argsLength; i++ {
-		fmt.Println("excludeArgs", excludeFlag[i])
-
-		// file open(read only)
 		readOnlyFile, err := os.Open(excludeFlag[i])
 		if err != nil {
 			fmt.Println(err)
@@ -36,10 +34,10 @@ func main() {
 
 		// file read
 		scannar := bufio.NewScanner(readOnlyFile)
-		index := 1
 		for scannar.Scan() {
 			if *nFlag {
-				fmt.Println(index, scannar.Text())
+				indexChar := strconv.Itoa(index)
+				fmt.Println(indexChar+":", scannar.Text())
 			} else {
 				fmt.Println(scannar.Text())
 			}
